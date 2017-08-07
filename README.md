@@ -4,7 +4,9 @@
 ## Topics Covered Security:
 #### Crypto - Encryption/Decryption
 #### Helmet Js for handle security like xssFilter | noSniff | noCache | hpkp | frameguard Etc.
-#### CORS - Cross-Origin Resource Sharing#### CSRF Token
+#### CORS - Cross-Origin Resource Sharing
+#### CSRF Token
+#### HTTPS
 
 ## Topics Covered Basic:
 #### PDF Generation
