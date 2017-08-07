@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Flexi | Secure Zone</title>
+
+<link rel="stylesheet" type="text/css" href="../assets/css/admin-style.css">
+
+</head>
+
+<body>
+  <div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Secure<span>Login</span></div>
+		</div>
+		<br>
+		<div class="login">
+			<form name="auth" method="post" action="/admin/login">
+				<input type="hidden" name="_csrf" value="<%=csrfToken%>">
+				<input type="text" placeholder="username" name="email"><br>
+				<input type="password" placeholder="password" name="password"><br>
+				<a href="javaScript:void(0);"><input type="submit" name="login" value="Login"></a><br>
+			</form>
+		</div>
+  
+</body>
+</html>

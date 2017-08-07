@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>empower | you are awesome </title>
+    <script src="assets/js/common.js"></script>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/flexiTool.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+<style type="text/css">
+* { box-sizing:border-box; }
+
+/* form starting stylings ------------------------------- */
+.group            { 
+  position:relative; 
+  margin-bottom:15px; 
+}
+input               {
+  font-size:14px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100%;
+  border:none;
+  border-bottom:1px solid rgba(0,0,0,0.12);
+  color: #000;
+}
+input:focus { outline:none; box-shadow:none; }
+
+/* LABEL ======================================= */
+label                {
+  color:#999; 
+  font-size:14px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label        {
+  top:-20px;
+  font-size:10px;
+  color:#C52B48;
+}
+
+/* BOTTOM BARS ================================= */
+.bar    { position:relative; display:block; width:100%; }
+.bar:before, .bar:after     {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#C52B48; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+/*.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}*/
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from { background:#C52B48; }
+  to    { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#C52B48; }
+  to    { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#C52B48; }
+  to    { width:0; background:transparent; }
+}
+</style>
+
+</head>
+<body class="loginCoverup">
+
+<div class="container">
+    <div class="col-md-4 col-md-push-4">
+        <div class="flexiLoginHolder">
+            <div class="flexiLoginHeader">
+                <div class="flexilogo">
+                    <img src="assets/images/flexilogo_login.png" alt="empower" width="140">
+                </div>
+                <div class="flexiHeading" style="text-align: center;">flexitool</div>
+                <p style="text-align: center;">Your Salary structure, your way</p>
+
+                <div class="flexiFieldHolder">
+                    <form method="post" action="/">
+                    <input type="hidden"  name="_csrf" value="<%=csrfToken%>">
+                        <div class="group">
+                            <input type="text" name="email" required>
+                             <span class="highlight"></span>
+                             <span class="bar"></span>
+                             <label>Times Internet Email Id</label>
+                        </div>
+                        <span><%= message %></span>
+                        
+                        <div class="flexiFieldHold" style="margin-bottom:0px;">
+                            <input type="submit" value="Generate Real Time Password">
+                        </div>
+ 			<div class="myNote">RTP will be sent to your timesinternet mail</div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<footer class="footer">
+    <p class="footer_text">Powered by HR@TIL</p>
+</footer>
+
+</body>
+</html>

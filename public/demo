@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+<title>Welcome to Onboarding</title>
+<style>
+body{
+font-family: 'Raleway', sans-seriff, Gotham, Helvetica, Arial;
+}
+
+table, tr,td { border-collapse:collapse;}
+@media screen and (max-width:800px){
+table{ width:100%;}
+.beShort{ width:10%;}
+.expand{ width:250px !important;}
+ }
+</style>
+</head>
+
+<body style="font-family: 'Raleway', sans-seriff, Gotham, Helvetica, Arial;">
+<table width="700" border="0" cellspacing="0" cellpadding="0" align="center">
+  <tbody>
+    <tr>
+      <td height="48" valign="bottom"><img src="cid:header.jpg"></td>
+    </tr>
+    <tr>
+    <td valign="top">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style=" background:#fbfbfb; border:1px solid #ddd; border-collapse:collapse;">
+  <tbody>
+    <tr>
+      <td height="60">&nbsp;</td>
+    </tr>
+    
+    <tr>
+      <td align="center"><img src="cid:flexi.png"></td>
+    </tr>
+    <tr>
+      <td style="text-align:center; font-size:14px;color:#333333;">&nbsp;</td>
+    </tr>
+    
+    <tr>
+      <td style="text-align:center; font-size:16px; " height="30"> Hi <%= user.username %>, Thank you for participating in flexitool 2017.</td>
+    </tr>
+    
+    <tr>
+      <td style="text-align:center;">Please find attached your revised Salary structure from FY 2017-18 effective from 1 August 2017.</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td height="60">&nbsp;</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    </td>
+    </tr>
+    <tr>
+      <td style="text-align:right; font-size:14px;" height="30">Times Internet Limited</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

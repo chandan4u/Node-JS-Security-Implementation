@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>empower | you are awesome </title>
+    <script src="assets/js/common.js"></script>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/flexiTool.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+    <style type="text/css">
+* { box-sizing:border-box; }
+
+/* form starting stylings ------------------------------- */
+.group            { 
+  position:relative; 
+  margin-bottom:45px; 
+}
+input               {
+  font-size:14px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100%;
+  border:none;
+  border-bottom:1px solid rgba(0,0,0,0.12);
+  color: #000;
+}
+input:focus { outline:none; box-shadow:none; }
+
+/* LABEL ======================================= */
+label                {
+  color:#999; 
+  font-size:14px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label        {
+  top:-20px;
+  font-size:10px;
+  color:#C52B48;
+}
+
+/* BOTTOM BARS ================================= */
+.bar    { position:relative; display:block; width:100%; }
+.bar:before, .bar:after     {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#C52B48; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+/* HIGHLIGHTER ================================== */
+/*.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}*/
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from { background:#C52B48; }
+  to    { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#C52B48; }
+  to    { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#C52B48; }
+  to    { width:0; background:transparent; }
+}
+</style>
+
+</head>
+<body class="loginCoverup">
+
+<div class="container">
+    <div class="col-md-4 col-md-push-4">
+        <div class="flexiLoginHolder">
+            <div class="flexiLoginHeader">
+                <div class="flexilogo">
+                    <img src="assets/images/flexilogo_login.png" alt="empower" width="140">
+                </div>
+                <div class="flexiHeading" style="text-align: center;">flexitool</div>
+                <p style="text-align: center;">Your Salary structure, your way</p>
+
+                <div class="flexiFieldHolder">
+                    <form method="post" action="/otp">
+                        <input type="hidden"  name="_csrf" value="<%=csrfToken%>">
+
+                        <div class="group" style="margin-bottom: 30px;">
+                            <input type="text" readonly name="email" value="<%= email %>">
+                            
+                        </div>
+
+                        <div class="group" style="margin:0px;">
+
+                        <input type="text" name="otp" required>
+
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Enter real time password (RTP)</label>
+
+                        <input type="hidden" value="<%= expire %>" name="expireDate" id="expireDate">
+
+                    </div>
+                        <% if(otpexpired){ %>
+                            <span class="resend" id="resend"><a href="/otp/resend">resend</a></span>
+                        <% } else{ %>
+                            <span class="resend" style="display: none" id="resend"><a href="/otp/resend">resend</a></span>
+                        <% } %>
+                        <span id="message"><%= message %></span><br/>
+                        <span id="timer"></span>
+                        <div class="flexiFieldHold" style="margin:0px;">
+                            <input type="submit" value="Submit">
+                        </div>
+			<div class="myNote">RTP has been sent to your demo mail</div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<footer class="footer">
+    <p class="footer_text">Powered by HR@TIL</p>
+</footer>
+
+<script>
+    // Set the date we're counting down to
+
+    var time = document.getElementById('expireDate').value;//1495093608819;
+
+    var countDownDate = new Date(time).getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get todays date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now an the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for hours, minutes and seconds
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").style.display = 'none';
+            document.getElementById("resend").style.display = 'block';
+            document.getElementById("message").innerHTML = "RTP expired.";
+        }else{
+            document.getElementById("timer").innerHTML = minutes + " min " + seconds + " seconds left";
+        }
+    }, 1000);
+</script>
+</body>
+</html>

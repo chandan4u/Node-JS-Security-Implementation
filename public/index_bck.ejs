@@ -1,0 +1,1848 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<title>empower | you are awesome </title>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/common.js"></script>
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/flexiTool.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+<style type="text/css">
+	.modal{ z-index: 11111111111; }
+	.modal-backdrop{ z-index: 1111111111 !important; }
+    .modal-backdrop.in { opacity: 0.7; }
+ </style>
+</head>
+<body>
+<!-- Start :: Card View Look -->
+<div id="cardView">
+
+<!--Middle Section Starts Here-->
+
+
+<div class="flexiheader">
+<div class="userDetailaCover" style="position: absolute;">
+<div class="userNameFetch"><%= flexiData.Name  %></div>
+<div class="userSAP_Id"><%= flexiData.Business  %>, <%= flexiData.Level  %></div>
+<div class="userSAP_Id"><%= flexiData.Sap_Id  %></div>
+</div>
+<div class="GoOut"><a href="/logout"><span>Logout</span></a></div>
+<div class="container">
+<p class="flexiLogo"><img src="assets/images/FlexiLogo_empower.png" alt="empower"></p>
+<p class="flexiTool_heding">flexitool</p>
+<p class="customiseText">Customise your salary structure to best suite your needs</p>
+<div class="toggleBlock">
+<div class="btn-group" role="group" aria-label="Default button group" style="width:100%;">
+ <button type="button" class="btn btn-default redCTA" onClick="hideShow('tableView')">LEARN</button>  <button type="button" class="btn btn-default whiteCTA" onClick="hideShow('cardView')">EDIT</button> </div>
+</div>
+</div>
+
+</div>
+
+<div class="clearfix"></div>
+<div class="container">
+<div class="flexicover">
+<div class="flexiwrap">
+
+<!--Salary Structure-->
+<div class="flexicard">
+<div class="flexiHeader"><%= flexiData.Name.split(' ')[0] + "'s "  %>Salary Structure</div>
+<div class="clearfix"></div>
+
+<!--Salary Structure-->
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Total Target Remuneration</div>
+<div class="fetchedRed"><%= flexiData.TTR_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Payslip Items</div>
+<div class="fetchedRed"><%= flexiData.Payslip_Value_Total %></div>
+</div>
+</div>
+
+<div class="col-md-2 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Reimbursements</div>
+<div class="fetchedRed"><%= flexiData.Total_Reimbursement_Total %></div>
+</div>
+</div>
+
+<div class="col-md-2 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Retirals</div>
+<div class="fetchedRed"><%= flexiData.PF_Total + flexiData.Gratuity_Total %></div>
+</div>
+</div>
+<%if(flexiData.TVP_Total > 0) { %>
+<div class="col-md-3 col-sm-6 col-xs-12" >
+<div class="flexiBox">
+<div class="topLabel">Total Variable Pay</div>
+<div class="fetchedRed"><%= flexiData.TVP_Total %></div>
+</div>
+</div>
+<% } %>
+
+</div>
+
+</div>
+
+
+<!--BASIC-->
+<div class="flexicard">
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">Basic</div></div>
+
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+This is a fixed component in your salary and forms the basis of other portions of your salary. Your HRA, PF and Gratuity are linked to your basic pay. It is fully taxable.
+</p>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<!--HRA-->
+<div class="flexicard">
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">HRA</div></div>
+
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+Salaried individuals who live in a rented house can claim House Rent Allowance or HRA to lower taxes. This can be partially or completely exempt from taxes. The allowance is for expenses related to rented accommodation. If you don’t live in a rented accommodation, this allowance is fully taxable.
+</p>
+<p>
+Claim House Rent Allowance (HRA) to meet your rented 
+accomodation related expenses.HRA can be fully or partially exempt from tax.
+</p>
+<p><strong>How is tax exemption from HRA calculated?</strong></p>
+
+<p>The deduction available is the minimum of the following amounts:</p>
+
+<p>
+<ul style="line-height:25px;">
+<li>Actual HRA received</li>
+<li>50% of [Basic salary + DA] for those living in metro cities (40% for non-metros)</li>
+<li>Actual rent paid less 10% of salary</li>
+</ul>
+</p>
+
+<p><%= flexiData.Name %>, you've utilised <span class="focused">Rs. <%= flexiData.Hra_Utilized %></span> of your HRA from April to August. Your upper limit is <span class="focused">Rs. <%= (flexiData.Basic * 50)/ 100 %></span></p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="flexicard">
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">Special Allowance</div></div>
+
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+After all the different components of a salary slip including benefits are allocated, the remaining sum of money which makes up the annual CTC, forms the Special Allowance.  It is money which does not fit into any other head in a salary slip or the residual factor. It is fully taxable.
+</p>
+<p>
+ Your special allowance currently is <span class="focused">Rs. <%= flexiData.Special_Allowance_Total %></span> per annum.
+</p>
+
+<!--<p><span><a href="#">Read more</a></span></p>-->
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+
+<!--Transport Allowance-->
+<div class="flexicard">
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">Transport Allowance</div></div>
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+Transport allowance is given to employees to meet travel expenses from residence to work. The allowance up to <span class="focused">Rs. <%= flexiData.Transport_Allowance_Total %></span> per annum is exempt from tax.
+</p>
+
+<!--<p><span><a href="#">Read more</a></span></p>-->
+</div>
+</div>
+</div>
+
+</div>
+
+
+<!--Meal Vouchers-->
+<div class="flexicard">
+
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">Meal Vouchers</div></div>
+
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+The food available within business premises can be purchased through paid vouchers which are not transferable & usable at only eating joints. An amount of  upto <span class="focused">Rs. 26,400</span> per year is exempt from tax.
+</p>
+
+<!--<p><span><a href="#">Read more</a></span></p>-->
+</div>
+</div>
+</div>
+
+</div>
+
+
+<!--Conveyence-->
+<div class="flexicard">
+
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">Conveyence</div></div>
+
+
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+Conveyance allowance is given to employees to meet travel expenses from residence to work. The conveyance allowance for up to <span class="focused">Rs. <%= flexiData.Conveyance_Upper_Limit %> </span> per annum is exempt from tax.
+</p>
+
+<!--<p><span><a href="#">Read more</a></span></p>-->
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!--LTA-->
+<div class="flexicard">
+
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">LTA</div></div>
+
+
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+You can avail exemption for a trip within India under Leave Travel Allowance. The exemption is only for shortest distance on a trip.
+</p>
+
+<p>
+This allowance can only be claimed for a trip taken with your spouse, children and parents, but not with other relatives.
+</p>
+
+<p>
+This particular exemption is up to the actual expenses, therefore unless you actually take the trip and incur these expenses, you cannot claim it. Submit the bills to your employer to claim this exemption.
+</p>
+
+ <!--<p><span><a href="#">Read more</a></span></p> -->
+</div>
+</div>
+
+</div>
+
+</div>
+
+<!--Medical-->
+<div class="flexicard">
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">Medical</div></div>
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+Medical reimbursement of upto <span class="focused">Rs. 15,000</span> is provided by the company towards medical expenses, but requires submission of bills to claim. These expenses could be incurred towards consultation with a doctor, medicines, medical tests etc.
+</p>
+
+<p>
+Deductions can also be claimed against medical expenses of your dependents. 
+</p>
+
+<p>
+The <span class="focused">Rs.15,000</span> you can claim is for each tax year that starts on April 1 and ends on March 31 next year.
+</p>
+
+<!--<p><span><a href="#">Read more</a></span></p>-->
+</div>
+</div>
+</div>
+
+</div>
+
+<!--Telephone-->
+<div class="flexicard">
+
+<div class="col-md-12 col-sm-12 col-xs-12"><div class="flexiHeader">Communication</div></div>
+<div class="clearfix"></div>
+<div class="flexiwrap">
+<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="flexiBox">
+<p>
+Medical reimbursement of upto <span class="focused">Rs. 15,000</span> is provided by the company towards medical expenses, but requires submission of bills to claim. These expenses could be incurred towards consultation with a doctor, medicines, medical tests etc.
+</p>
+<p>
+ An amount of upto <span class="focused">Rs. <%if(['SO1','SO2','SO3','M1','M2','M3','CM1','CM2','CM3','GM1','GM2'].indexOf(flexiData.Level) !== -1) { %>
+48000
+<%}else{%>
+60000
+<%}%></span> is exempt from tax annually.
+</p>
+
+<!--<p><span><a href="#">Read more</a></span></p>-->
+</div>
+</div>
+</div>
+
+</div>
+
+
+<!--Retiral-->
+<div class="flexicard">
+<div class="flexiHeader">Retirals</div>
+<div class="clearfix"></div>
+
+<!--Salary Structure-->
+<div class="flexiwrap">
+<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">PF  <span class="counti">(Employer Contribution)</span></div>
+<div class="fetchedRed"><%= flexiData.PF_Total %></div>
+</div>
+</div>
+
+
+<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Gratuity</div>
+<div class="fetchedRed"><%= flexiData.Gratuity_Total %></div>
+</div>
+</div>
+<%if(flexiData.TVP_Total > 0) { %>
+<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Total Variable Pay</div>
+<div class="fetchedRed"><%= flexiData.TVP_Total %></div>
+</div>
+</div>
+<% } %>
+</div>
+
+</div>
+
+
+<div class="flexiField">
+<input type="submit" value="I Got it. Let's Edit" class="flexired" onClick="hideShow('cardView')">
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+<!-- End :: Card View Look -->
+
+<!-- Start :: Table View Code -->
+
+<!--Middle Section Starts Here-->
+
+<form method="post" name="flexiForm" id="flexiForm" action="/revised/" onsubmit="return confirmationCheck();">
+
+<input type="hidden"  name="_csrf" value="<%=csrfToken%>">
+
+<input type="hidden" name="flexiUserId" id="flexiUserId" value="<%= flexiData._id %>">
+
+<div id="tableView" style="display: none;">
+
+<div class="flexiHeaderBlue">
+<div class="userDetailaCover">
+<div class="userNameFetch"><%= flexiData.Name  %></div>
+<div class="userSAP_Id"><%= flexiData.Business  %>, <%= flexiData.Level  %></div>
+<div class="userSAP_Id"><%= flexiData.Sap_Id  %></div>
+</div>
+<div class="GoOut"><a href="/logout"><span>Logout</span></a></div>
+<div class="container">
+<p class="flexiLogo"><img src="assets/images/FlexiBlueLogo_empower.png" alt="empower"></p>
+<p class="flexiTool_heding">flexitool</p>
+<p class="customiseText blueshade">Customise your salary structure to best suite your needs</p>
+<div class="toggleBlock">
+<div class="btn-group" role="group" aria-label="Default button group" style="width:100%;">
+ <button type="button" class="btn btn-default whiteBLUECTA" onClick="hideShow('tableView')">
+ LEARN</button>  <button type="button" class="btn btn-default  redBlueCTA" onClick="hideShow('cardView')">EDIT</button> </div>
+</div>
+</div>
+</div>
+
+<div class="clearfix"></div>
+<div class="container-fluid">
+<div class="flexicover" style="width:100%; max-width:100%;">
+
+<!--Salary Structure-->
+<div id="sticky2-anchor"></div>
+<div class="pFixing" id="sticky2">
+<div class="flexicard">
+<div class="heading_blueLeft"><%= flexiData.Name.split(' ')[0] + "'s "  %>Salary Structure</div>
+<div class="clearfix"></div>
+ Salary Str
+<!--Salary Structure-->
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Total Target Remuneration</div>
+<div class="fetched"><%= flexiData.TTR_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Payslip&nbsp;Items</div>
+<div class="<%if(flexiData.Payslip_Value_Total < 252000) {%>fetchedRed  <%}else{%>fetched<%}%>" id="topPaySlipValueId"><%= flexiData.Payslip_Value_Total %></div>
+</div>
+</div>
+
+
+<div class="col-md-2 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Reimbursements</div>
+<input type="hidden" name="paySlipValueNewTotalHiddenValue" id="paySlipValueNewTotalHiddenValue" value="<%= flexiData.Total_Reimbursement_Total %>">
+<div class="fetched" id="topReimbursementTotalTop"><%= flexiData.Total_Reimbursement_Total %></div>
+</div>
+</div>
+
+<div class="col-md-2 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Retirals</div>
+<div class="fetched"><%= flexiData.PF_Total+flexiData.Gratuity_Total %></div>
+</div>
+</div>
+<%if(flexiData.TVP_Total > 0) { %>
+<div class="col-md-3 col-sm-6 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel">Total Variable Pay</div>
+<div class="fetched"><%= flexiData.TVP_Total %></div>
+</div>
+</div>
+<% } %>
+</div>
+
+</div>
+</div>
+<!--Salary Structure-->
+
+<div class="flexiwrap">
+<!--Salary Structure-->
+<div class="flexicard">
+
+<div class="clearfix"></div>
+
+<!--Salary Structure-->
+<div class="flexiwrap">
+
+<div id="sticky-anchor"></div>
+<div class="pFixing" id="sticky">
+<div class="top_headings">
+<div class="col-md-12">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="row">
+<div class="flexiHeader FlexiBlackHeader" style=" clear:both;">Pay Items</div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox NoMarg">
+<div class="topLabel highlighted">Current</div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox NoMarg">
+<div class="topLabel highlighted">Utilized</div>
+<div class="topLabel littleHighlight">April to July '17</div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox NoMarg">
+<div class="topLabel highlighted">New</div>
+<div class="topLabel littleHighlight makeChange">Make Changes Here</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox NoMarg">
+<div class="topLabel highlighted">Total</div>
+<div class="topLabel littleHighlight makeChange">Revised Annual Salary</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<input type="hidden" name="specialAllowanceOriginalValue" value="<%= flexiData.Special_Allowance_New %>" id="specialAllowanceOriginalValue">
+<input type="hidden" name="specialAllowanceOriginalTotalValue" value="<%= flexiData.Special_Allowance_Total %>" id="specialAllowanceOriginalTotalValue">
+<input type="hidden" name="paySlipOriginalValue" value="<%= flexiData.Payslip_Value_New %>" id="paySlipOriginalValue">
+<input type="hidden" name="paySlipOriginalTotalValue" value="<%= flexiData.Payslip_Value_Total %>" id="paySlipOriginalTotalValue">
+
+<div class="clearfix"></div>
+
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Basic Pay</div>
+
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<input type="hidden" name="basicSalaryValue" id="basicSalaryId" value="<%= flexiData.Basic %>">
+<div class="fadeoutTable "><%= flexiData.Basic %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized</div>
+<div class="fadeoutTable "><%= flexiData.Basic_Utilized %></div>
+</div>
+
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize"><%= flexiData.Basic - flexiData.Basic_Utilized %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<div class="fetched BlueShortSize"><%= flexiData.Basic %></div>
+</div>
+</div>
+</div>
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">HRA</div>
+<p>
+    Maximum limit upto INR <strong><%= (flexiData.Basic * 50)/ 100 %></strong>
+</p>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable "><%= flexiData.Hra_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<input type="hidden" name="hraUtilized" id="hraUtilizedId" value="<%= flexiData.Hra_Utilized %>">
+<div class="fadeoutTable"><%= flexiData.Hra_Utilized %></div>
+</div>
+
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize">
+<%= flexiData.Hra_New %>
+
+<!-- Start :: HRA Option Condition values -->
+
+<!-- <input type="hidden" name="currentHra" id="currentHraPercentageId" value="<%= ((flexiData.Hra_Current * 100) / flexiData.Basic).toFixed() %>">
+
+<input type="hidden" name="hraNewValue" id="hraNewValue" value="<%= (flexiData.Hra_New).toFixed() %>">
+<input type="hidden" name="hraNewValueSubmitted" id="hraNewValueSubmitted" value="<%= (flexiData.Hra_New).toFixed() %>"> -->
+
+<!-- <select name="hraPercentage" id="hraPercentage" onchange="hraDependentOperation()">
+
+<option value="0" <%if(flexiData.Hra_Current == '0') {%> selected <% } %>>0</option>
+
+<option value="10" <%if(((flexiData.Basic * 10 * forMonth)/ (100 * 12)).toFixed() == (flexiData.Hra_New).toFixed() ) {%> selected <% } %>>
+10% is <%= ((flexiData.Basic * 10 * forMonth)/ (100 * 12)).toFixed() %>
+</option>
+
+<option value="20" <%if(((flexiData.Basic * 20 * forMonth)/ (100 * 12)).toFixed() == (flexiData.Hra_New).toFixed() ) {%> selected <% } %>>
+20% is <%= ((flexiData.Basic * 20 * forMonth)/ (100 * 12)).toFixed() %>
+</option>
+
+<option value="30" <%if(((flexiData.Basic * 30 * forMonth)/ (100 * 12)).toFixed() == (flexiData.Hra_New).toFixed()) {%> selected <% } %>>
+30% is <%= ((flexiData.Basic * 30 * forMonth)/ (100 * 12)).toFixed() %>
+</option>
+
+<option value="40" <%if(((flexiData.Basic * 40 * forMonth)/ (100 * 12)).toFixed() == (flexiData.Hra_New).toFixed() ) {%> selected <% } %>>
+40% is <%= ((flexiData.Basic * 40 * forMonth)/ (100 * 12)).toFixed() %>
+</option>
+
+<option value="50" <%if(((flexiData.Basic * 50 * forMonth)/ (100 * 12)).toFixed() == (flexiData.Hra_New).toFixed()) {%> selected <% } %>>
+50% is <%= ((flexiData.Basic * 50 * forMonth)/ (100 * 12)).toFixed() %>
+</option>
+
+<%if([0,10,20,30,40,50].indexOf((flexiData.Hra_Current * 100)/ flexiData.Basic) == -1) { %>
+<option selected value="<%= (flexiData.Hra_Current * 100) / flexiData.Basic %>"><%= (flexiData.Hra_Current * 100) / flexiData.Basic %>% is <%= ((flexiData.Basic * ((flexiData.Hra_Current * 100) / flexiData.Basic) * forMonth)/ (100 * 12)).toFixed() %></option>
+<% } %>
+
+</select> -->
+
+<!-- Start :: HRA Option Condition values -->
+
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+
+<input type="hidden" id="hraTotalValue" name="hraTotalValue" value="<%= flexiData.Hra_Total %>">
+
+<div id="hraTotal" class="fetched BlueShortSize"><%= flexiData.Hra_Total %></div>
+</div>
+
+</div>
+</div>
+
+
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Special Allowance</div>
+<!--<p>
+The difference between your Total Target Remuneration <strong>6,40,000</strong>  and the rest of the salary components <strong>5,30,000</strong>. This is taxable.
+</p>-->
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.Special_Allowance_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<div class="fadeoutTable"><%= flexiData.Special_Allowance_Utilized %></div>
+</div>
+
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+
+<input type="hidden" name="specialAllowanceNewValue" value="<%= flexiData.Special_Allowance_New %>" id="specialAllowanceNewValue">
+<div id="specialAllowanceNew" class="<%if(flexiData.Special_Allowance_New < 0) {%>fetchedRed  <%}else{%>fetched BlueShortSize<%}%>"><%= flexiData.Special_Allowance_New %></div>
+
+</div>
+
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<input type="hidden" value="<%= flexiData.Special_Allowance_Total %>" name="specialAllowanceTotalValue" id="specialAllowanceTotalValue">
+<div id="specialAllowanceTotal" class="<%if(flexiData.Special_Allowance_Total < 0) {%>fetchedRed  <%}else{%>fetched BlueShortSize<%}%>"><%= flexiData.Special_Allowance_Total %></div>
+</div>
+
+</div>
+</div>
+
+<div class="flexiwrap FlextBottomBorder">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Transport Allowance</div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.Transport_Allowance_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<div class="fadeoutTable"><%= flexiData.Transport_Allowance_Utilized %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize"><%= flexiData.Transport_Allowance_New %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<div class="fetched BlueShortSize"><%= flexiData.Transport_Allowance_Total %></div>
+</div>
+</div>
+</div>
+
+
+<div class="flexiwrap FlextBottomBorder">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Total Payslip Items</div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fetched BlueShortSize"><%= flexiData.Payslip_Value_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized Till Now</div>
+<div class="fetched BlueShortSize"><%= flexiData.Payslip_Value_Utilized %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<input type="hidden" name="paySlipValueNew" id="paySlipValueNew" value="<%= flexiData.Payslip_Value_New %>">
+<div class="fetched BlueShortSize" id="paySlipValueNewView"><%= flexiData.Payslip_Value_New %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<input type="hidden" name="paySlipValueNewTotal" id="paySlipValueNewTotal" value="<%= flexiData.Payslip_Value_Total %>">
+<div class="<%if(flexiData.Payslip_Value_Total < 252000) {%>fetchedRed  <%}else{%>fetched BlueShortSize<%}%>" id="paySlipValueNewTotalView"><%= flexiData.Payslip_Value_Total %></div>
+</div>
+</div>
+</div>
+
+
+<!-- ####################################  START Calculation ######################################## -->
+
+<div class="flexiwrap">
+<div class="flexiHeader FlexiBlackHeader">Reimbursement</div>
+
+<!-- Start ::: Conveyance Reimbursement Calculation Section -->
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Conveyance</div>
+<p>
+       Maximum limit upto INR <strong><%= flexiData.Conveyance_Upper_Limit %> </strong>
+    <% var conveyance = flexiData.Conveyance_Upper_Limit %>
+</p>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.Conveyance_Reimbursement_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+
+<input type="hidden" value="<%= flexiData.Conveyance_Reimbursement_Utilized %>" name="utilizedConveyanceValueNew" id="utilizedConveyanceValueNew">
+
+<div class="fadeoutTable"><%= flexiData.Conveyance_Reimbursement_Utilized %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize">
+
+<input type="hidden" value="<%= flexiData.Conveyance_Reimbursement_New %>" name="ConveyanceReimbursementNew" id="ConveyanceReimbursementNew">
+<!-- this.value = minmax(this.value, <%= conveyance %>), -->
+<input type="text" onkeyup="this.value=this.value.replace(/[^0-9^&*()_\.]/g,''), conveyanceReimbursementCalculation(this.value)" name="ConveyanceReimbursementNewView" id="ConveyanceReimbursementNewView" value="<%= flexiData.Conveyance_Reimbursement_New %>" maxlength="6">
+
+<div id="alertConveyance" style="font-size: 14px; color: red;">
+</div>
+
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+
+<!-- Start :: Hidden Value Conveyance Reimbursement Total -->
+
+<input type="hidden" name="ConveyanceReimbursementTotal" id="ConveyanceReimbursementTotal" value="<%= flexiData.Conveyance_Reimbursement_Total %>">
+
+<!-- End :: Hidden Value Conveyance Reimbursement Total -->
+
+<div class="fetched BlueShortSize" id="ConveyanceReimbursementTotalView"><%= flexiData.Conveyance_Reimbursement_Total %></div>
+
+</div>
+</div>
+</div>
+
+<!-- End  ::: Conveyance Reimbursement Calculation Section -->
+
+<!-- ################################################################################################
+
+<!-- Start  ::: Communication Reimbursement Calculation Section -->
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Communication</div>
+<p>
+    Maximum limit upto INR <strong>
+    
+<%if(['SO1','SO2','SO3','M1','M2','M3','CM1','CM2','CM3','GM1','GM2'].indexOf(flexiData.Level) !== -1) { var communication = '48000' %>
+48000
+<%} else { var communication = '60000' %>
+60000
+<%}%>
+
+</strong>
+</p>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.Communication_Reimbursement_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<input type="hidden" name="utilizedCommunicationValue" value="<%= flexiData.Communication_Reimbursement_Utilized %>" id="utilizedCommunicationValue">
+<div class="fadeoutTable"><%= flexiData.Communication_Reimbursement_Utilized %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize">
+
+<!-- Start :: Hidden Value Communication Reimbursement -->
+
+<input type="hidden" value="<%= flexiData.Communication_Reimbursement_New %>" name="CommunicationReimbursementNew" id="CommunicationReimbursementNew">
+
+<!-- End :: Hidden Value Communication Reimbursement -->
+
+<input type="text" onkeyup="this.value=this.value.replace(/[^0-9^&*()_\.]/g,''), communicationReimbursementCalculation(this.value)" id="CommunicationReimbursementNewView" value="<%= flexiData.Communication_Reimbursement_New %>" name="CommunicationReimbursementNewView" maxlength="6">
+
+<div id="alertCommunication" style="font-size: 14px; color:red;"></div>
+
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+
+<!-- Start :: Hidden Field Communication Reimbursement -->
+
+<input type="hidden" name="CommunicationReimbursementTotal" id="CommunicationReimbursementTotal" value="<%= flexiData.Communication_Reimbursement_Total %>">
+
+<!-- End :: Hidden Field Communication Reimbursement -->
+
+<div class="fetched BlueShortSize" id="CommunicationReimbursementTotalView" ><%= flexiData.Communication_Reimbursement_Total %></div>
+
+</div>
+</div>
+</div>
+
+<!-- End  ::: Communication Reimbursement Calculation Section -->
+
+<!-- ######################################################################################################
+
+<!-- Start  ::: Meal Voucher Calculation Section -->
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Meal Voucher</div>
+<p>
+    Maximum limit upto INR <strong>
+26,400
+</strong>
+</p>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%if(flexiData.Meal_Voucher_Old_Status == 'true'){ %> <%= mealVoucherAmount %> <% } else{ %> <%= zeroPrintConstant %> <% } %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<input type="hidden" value="<%= flexiData.Meal_Voucher_Utilized %>" id="mealVoucherUtilized">
+<div class="fadeoutTable"><%= flexiData.Meal_Voucher_Utilized %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize">
+<input type="hidden" name="mealOriginalStatus" id="mealOriginalStatus" value="<%= flexiData.Meal_Voucher_New_Status %>">
+
+<input type="hidden" name="mealNewValue" id="mealNewValue" value="<%= flexiData.Meal_Voucher_New %>">
+
+<select name="mealVoucherStatus" id="mealVoucherStatus" onchange="mealVoucherCalculation()">
+<option value="true" <%if(flexiData.Meal_Voucher_New_Status == "true"){%> selected="selected" <% } %>>Yes (<%= mealVoucherAmount - flexiData.Meal_Voucher_Utilized %>) </option>
+<option value="false" <%if(flexiData.Meal_Voucher_New_Status == "false"){%> selected <% } %>>No</option>
+</select>
+
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<input type="hidden" name="mealVoucherTotal" id="mealVoucherTotal" value="<%= flexiData.Meal_Voucher_Total %>">
+<div class="fetched BlueShortSize" id="mealVoucherTotalView"><%= flexiData.Meal_Voucher_Total %></div>
+</div>
+</div>
+</div>
+
+<!-- End  ::: Meal Voucher Calculation Section -->
+
+<!-- ################################################################################################### -->
+
+<!-- Start ::: LTA Calculation Section -->
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">LTA</div>
+<p>Maximum limit upto INR <strong>
+<%if(['SO1','SO2','SO3','M1','M2','M3'].indexOf(flexiData.Level) !== -1) { var lta ='50000'; %>
+50000
+<%} else{ var lta = '100000'; %>
+100000
+<%}%>
+</strong></p>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.LTA_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<input type="hidden" value="<%= flexiData.LTA_Utilized %>" name="ltaUtilizedValue" id="ltaUtilizedValue">
+<div class="fadeoutTable"><%= flexiData.LTA_Utilized %></div>
+</div>
+
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize">
+<input type="hidden" value="<%= flexiData.LTA_New %>" name="ltaReimbursementNew" id="ltaReimbursementNew">
+<input type="text" onkeyup="this.value=this.value.replace(/[^0-9^&*()_\.]/g,''), ltaReimbursementCalculation(this.value)" value="<%= flexiData.LTA_New %>" id="ltaReimbursementNewView" name="ltaReimbursementNewView" maxlength="6">
+<div id="alertLta" style="font-size:14px; color:red;"></div>
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<input type="hidden" name="ltaReimbursementTotal" id="ltaReimbursementTotal" value="<%= flexiData.LTA_Total %>">
+<div class="fetched BlueShortSize" id="ltaReimbursementTotalView"><%= flexiData.LTA_Total %></div>
+</div>
+</div>
+</div>
+
+<!-- End ::: LTA Calculation Section -->
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Medical</div>
+<p>Maximum limit upto INR <strong>15000</strong>
+</p>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.Medical_Reimbursement_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<input type="hidden" name="utilizedMedicalValue" value="<%= flexiData.Medical_Reimbursement_Utilized %>" id="utilizedMedicalValue">
+<div class="fadeoutTable"><%= flexiData.Medical_Reimbursement_Utilized %></div>
+</div>
+
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize">
+<input type="hidden" value="<%= flexiData.Medical_Reimbursement_New %>" name="medicalReimbursementNew" id="medicalReimbursementNew">
+<input type="text" onkeyup="this.value=this.value.replace(/[^0-9^&*()_\.]/g,''), medicalReimbursementCalculation(this.value)" value="<%= flexiData.Medical_Reimbursement_New %>" id="medicalReimbursementNewView" name="medicalReimbursementNewView" maxlength="6">
+<div id="alertMedical" style="font-size: 14px; color:red;"> </div>
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<input type="hidden" value="<%= flexiData.Medical_Reimbursement_Total %>" name="medicalReimbursementTotal" id="medicalReimbursementTotal">
+<div class="fetched BlueShortSize" id="medicalReimbursementTotalView"><%= flexiData.Medical_Reimbursement_Total %></div>
+</div>
+</div>
+</div>
+
+<!-- End ::: LTA Calculation Section  -->
+
+
+<!-- End ::: BPL Calculation Section -->
+
+<%if(flexiData.BPL_Current > 0){ %>
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Business Promotion</div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.BPL_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<div class="fadeoutTable"><%= flexiData.BPL_Utilized %></div>
+</div>
+
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize"><%= flexiData.BPL_New %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+
+<input type="hidden" name="bplTotal" id="bplTotal" value="<%= flexiData.BPL_Total %>">
+
+<div class="fetched BlueShortSize"><%= flexiData.BPL_Total %></div>
+</div>
+</div>
+</div>
+
+<% } %>
+ 
+<!-- End ::: BPL Calculation Section  -->
+
+<!-- End ::: BPL Calculation Section -->
+
+<%if(flexiData.CarMonetization_Current > 0) { %>
+
+<div class="flexiwrap FlextBottomBorder">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Car Monetization</div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.CarMonetization_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized till now</div>
+<div class="fadeoutTable"><%= flexiData.CarMonetization_Utilized %></div>
+</div>
+
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize"><%= flexiData.CarMonetization_New %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+
+<input type="hidden" name="carMonetizationTotalValue" id="carMonetizationTotalValue" value="<%= flexiData.CarMonetization_Total %>">
+
+<div class="fetched BlueShortSize"><%= flexiData.CarMonetization_Total %></div>
+</div>
+</div>
+</div>
+
+<% } %>
+
+<!-- End ::: BPL Calculation Section  -->
+
+
+
+<!-- ##########################################  END Calculation  ############################################ -->
+
+<div class="flexiwrap FlextBottomBorder">
+<div class=" flexiHeader FlexiBlackHeader">Retirals</div>
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">PF <span class="counti">Employer Contribution</span></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel  V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.PF_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel  V_I">Utilized Till Now</div>
+<div class="fadeoutTable"><%= flexiData.PF_Utilized %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel  V_I">New</div>
+<div class="fetched BlueShortSize"><%= flexiData.PF_New %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel  V_I">Total</div>
+<div class="fetched BlueShortSize"><%= flexiData.PF_Total %></div>
+</div>
+</div>
+</div>
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Gratuity</div>
+
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.Gratuity_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized Till Now</div>
+<div class="fadeoutTable"><%= flexiData.Gratuity_Utilized %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize"><%= flexiData.Gratuity_New %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<div class="fetched BlueShortSize"><%= flexiData.Gratuity_Total %></div>
+</div>
+</div>
+</div>
+
+<%if(flexiData.TVP_Total > 0) { %>
+
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Total Variable Pay</div>
+
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel  V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.TVP_Total %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel  V_I">Utilized Till Now</div>
+<div class="fadeoutTable"><%= flexiData.TVP_Total %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel  V_I">New</div>
+<div class="fetched BlueShortSize"><%= flexiData.TVP_Total %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel  V_I">Total</div>
+<div class="fetched BlueShortSize"><%= flexiData.TVP_Total %></div>
+</div>
+</div>
+</div>
+
+<% } %>
+
+</div>
+
+<div class="flexiwrap FlextBottomBorder">
+<div class="flexiwrap">
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="heading_blueLeft">Total Target Remuneration</div>
+
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Current</div>
+<div class="fadeoutTable"><%= flexiData.TTR_Current %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Utilized Till Now</div>
+<div class="fadeoutTable"><%= flexiData.TTR_Utilized %></div>
+</div>
+</div>
+<div class="col-md-2 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">New</div>
+<div class="fetched BlueShortSize"><%= flexiData.TTR_Available %></div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="flexiBox">
+<div class="topLabel V_I">Total</div>
+<div class="fetched BlueShortSize"><%= flexiData.TTR_Current %></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="flexiField">  
+<div id="finalAlert" style="font-size:14px; color:red; margin-bottom: 20px;"></div>                        
+                 <input type="submit" id="submitButtonValidationManage" value="Submit">
+                            
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+
+</div>
+
+</form>
+
+
+
+<div class="footerStripe">Powered by HR @<span>Times Internet</span></div>
+
+<!-- Modal -->
+<div class="modal fade" id="myMsg" tabindex="9999" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document" style="z-index: 9999999999;" >
+    <div class="modal-content" style="border-radius:0px;"> 
+     <div class="modal-body">
+        <div class="container">
+          <div class="my_middle_container">
+            <div class="col-md-6">
+              <div class="notification_holder">
+                <div class="clearfix"></div>
+                <center><p style=" font-size:18px; padding:8px;">Are you sure you want to update your Salary Structure?</p></center>
+
+                <center>
+                  <button class="btn btn-default green"  data-dismiss="modal" aria-label="Close" type="submit" style="padding:10px 40px 10px 40px; margin:20px; " onclick="confirmationCheck(true)">YES</button>
+                  <button class="btn btn-default green" data-dismiss="modal" aria-label="Close" type="submit" style="padding:10px 40px 10px 40px; margin: 20px;">NO</button>
+
+                </center>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Model--> 
+
+<!--landing Model-->
+<div class="modal fade" id="hintModal" tabindex="-1" role="dialog" aria-labelledby="hintModalLabel">
+ <div class="modal-dialog" role="document" style="margin-top:100px; z-index: 9999999999;">
+  <div class="modal-content">
+   <div class="modal-header" style="padding:0px; border:none; position:absolute; right:0px; top:10px; z-index:111;">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="assets/images/flexicross.png"></span></button>
+
+   </div>
+   <div class="modal-body" style="padding:0px;">
+    <img src="assets/images/hint.jpg">
+   </div>
+
+  </div>
+ </div>
+</div>
+<!--landing Model-->
+
+
+<script src="assets/js/sticki.js"></script>
+<!-- <script src="js/flexiCalculation.js"></script> -->
+
+<script type="text/javascript">
+	// #################################### START #################################################
+// ############################### CHANDAN KUMAR ##############################################
+// ############################################################################################
+
+function __resetSpecialPaySlipValues()
+{
+
+    var calculateSpecialAllowanceConveyance = isNaN(parseInt($("#specialAllowanceOriginalValue").val()))?0:parseInt($("#specialAllowanceOriginalValue").val());
+    var calculateSpecialAllowanceTotalConveyance = isNaN(parseInt($("#specialAllowanceOriginalTotalValue").val()))?0:parseInt($("#specialAllowanceOriginalTotalValue").val());
+    var paySlipNewValue = isNaN(parseInt($("#paySlipOriginalValue").val()))?0:parseInt($("#paySlipOriginalValue").val());
+    var paySlipNewTotalValue = isNaN(parseInt($("#paySlipOriginalTotalValue").val()))?0:parseInt($("#paySlipOriginalTotalValue").val());
+
+    // Start :: HRA Calculation
+
+    // var basicSalaray = isNaN(parseInt($("#basicSalaryId").val()))?0:parseInt($("#basicSalaryId").val());
+    // var hraPercentage = String($("#hraPercentage").val());
+    // var utilizedHraValue = isNaN(parseInt($("#hraUtilizedId").val()))?0:parseInt($("#hraUtilizedId").val());
+    // var hraNewValue = isNaN(parseInt($("#hraNewValue").val()))?0:parseInt($("#hraNewValue").val());
+    // var getMonthValue = <%= forMonth %>
+    // var totalHraAmount = ((basicSalaray * hraPercentage * getMonthValue)/(100 * 12));
+
+    // if(totalHraAmount > hraNewValue)
+    // {
+    //     var hraDiffAmount = totalHraAmount - hraNewValue;
+    //     calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance - hraDiffAmount;
+    //     calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance - hraDiffAmount;
+    //     // paySlipNewValue = paySlipNewValue - hraDiffAmount;
+    //     // paySlipNewTotalValue = paySlipNewTotalValue - hraDiffAmount;
+    // }
+    // else if(totalHraAmount < hraNewValue)
+    // {
+    //     var hraDiffAddAmount = hraNewValue - totalHraAmount;
+    //     calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance + hraDiffAddAmount;
+    //     calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance + hraDiffAddAmount;
+    //     // paySlipNewValue = paySlipNewValue + hraDiffAddAmount;
+    //     // paySlipNewTotalValue = paySlipNewTotalValue + hraDiffAddAmount;
+    // }
+    // else
+    // {
+    //     calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance;
+    //     calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance;
+    //     paySlipNewValue = paySlipNewValue;
+    //     paySlipNewTotalValue = paySlipNewTotalValue;
+    // }
+
+    // End :: HRA Calculation
+    
+
+    // Start :: Conveyance Calculation
+
+    var getCurrentValueConveyance = isNaN(parseInt($("#ConveyanceReimbursementNew").val()))?0:parseInt($("#ConveyanceReimbursementNew").val());
+    var newConveyanceValue = isNaN(parseInt($("#ConveyanceReimbursementNewView").val()))?0:parseInt($("#ConveyanceReimbursementNewView").val());
+    
+    if(getCurrentValueConveyance < newConveyanceValue)
+    {
+        var diffSubstractionValueConveyance = newConveyanceValue - getCurrentValueConveyance;
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance - diffSubstractionValueConveyance;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance - diffSubstractionValueConveyance;
+        paySlipNewValue = paySlipNewValue - diffSubstractionValueConveyance;
+        paySlipNewTotalValue = paySlipNewTotalValue - diffSubstractionValueConveyance;
+
+    }
+    else if(getCurrentValueConveyance > newConveyanceValue)
+    {
+        var diffAdditionValueConveyance = getCurrentValueConveyance - newConveyanceValue;
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance + diffAdditionValueConveyance;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance + diffAdditionValueConveyance;
+        paySlipNewValue = paySlipNewValue + diffAdditionValueConveyance;
+        paySlipNewTotalValue = paySlipNewTotalValue + diffAdditionValueConveyance;
+    }
+    else
+    {
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance;
+        paySlipNewValue = paySlipNewValue;
+        paySlipNewTotalValue = paySlipNewTotalValue;
+    }
+
+    // End :: Conveyance Calculation
+
+
+    // Start :: Communication Calculation
+
+    var getCurrentValueCommunication = isNaN(parseInt($("#CommunicationReimbursementNew").val()))?0:parseInt($("#CommunicationReimbursementNew").val());
+    var newCommunicationValue = isNaN(parseInt($("#CommunicationReimbursementNewView").val()))?0:parseInt($("#CommunicationReimbursementNewView").val());
+    
+    if(getCurrentValueCommunication < newCommunicationValue)
+    {
+        var diffSubstractionValueCommunication = newCommunicationValue - getCurrentValueCommunication;
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance - diffSubstractionValueCommunication;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance - diffSubstractionValueCommunication;
+        paySlipNewValue = paySlipNewValue - diffSubstractionValueCommunication;
+        paySlipNewTotalValue = paySlipNewTotalValue - diffSubstractionValueCommunication;
+
+    }
+    else if(getCurrentValueCommunication > newCommunicationValue)
+    {
+        var diffAdditionValueCommunication = getCurrentValueCommunication - newCommunicationValue;
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance + diffAdditionValueCommunication;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance + diffAdditionValueCommunication;
+        paySlipNewValue = paySlipNewValue + diffAdditionValueCommunication;
+        paySlipNewTotalValue = paySlipNewTotalValue + diffAdditionValueCommunication;
+    }
+    else
+    {
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance;
+        paySlipNewValue = paySlipNewValue;
+        paySlipNewTotalValue = paySlipNewTotalValue;
+    }
+
+    // End :: Communication Calculation
+
+    // Start :: LTA Calculation
+
+    var getCurrentValueLta = isNaN(parseInt($("#ltaReimbursementNew").val()))?0:parseInt($("#ltaReimbursementNew").val());
+    var newLtaValue = isNaN(parseInt($("#ltaReimbursementNewView").val()))?0:parseInt($("#ltaReimbursementNewView").val());
+    
+    if(getCurrentValueLta < newLtaValue)
+    {
+        var diffSubstractionValueLta = newLtaValue - getCurrentValueLta;
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance - diffSubstractionValueLta;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance - diffSubstractionValueLta;
+        paySlipNewValue = paySlipNewValue - diffSubstractionValueLta;
+        paySlipNewTotalValue = paySlipNewTotalValue - diffSubstractionValueLta;
+
+    }
+    else if(getCurrentValueLta > newLtaValue)
+    {
+        var diffAdditionValueLta = getCurrentValueLta - newLtaValue;
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance + diffAdditionValueLta;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance + diffAdditionValueLta;
+        paySlipNewValue = paySlipNewValue + diffAdditionValueLta;
+        paySlipNewTotalValue = paySlipNewTotalValue + diffAdditionValueLta;
+    }
+    else
+    {
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance;
+        paySlipNewValue = paySlipNewValue;
+        paySlipNewTotalValue = paySlipNewTotalValue;
+    }
+
+    // End :: LTA Calculation
+
+    // Start :: Medical Calculation
+
+    var getCurrentValueMedical = isNaN(parseInt($("#medicalReimbursementNew").val()))?0:parseInt($("#medicalReimbursementNew").val());
+    var newMedicalValue = isNaN(parseInt($("#medicalReimbursementNewView").val()))?0:parseInt($("#medicalReimbursementNewView").val());
+    
+    if(getCurrentValueMedical < newMedicalValue)
+    {
+        var diffSubstractionValueMedical = newMedicalValue - getCurrentValueMedical;
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance - diffSubstractionValueMedical;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance - diffSubstractionValueMedical;
+        paySlipNewValue = paySlipNewValue - diffSubstractionValueMedical;
+        paySlipNewTotalValue = paySlipNewTotalValue - diffSubstractionValueMedical;
+
+    }
+    else if(getCurrentValueMedical > newMedicalValue)
+    {
+        var diffAdditionValueMedical = getCurrentValueMedical - newMedicalValue;
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance + diffAdditionValueMedical;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance + diffAdditionValueMedical;
+        paySlipNewValue = paySlipNewValue + diffAdditionValueMedical;
+        paySlipNewTotalValue = paySlipNewTotalValue + diffAdditionValueMedical;
+    }
+    else
+    {
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance;
+        paySlipNewValue = paySlipNewValue;
+        paySlipNewTotalValue = paySlipNewTotalValue;
+    }
+
+    // End :: Medical Calculation
+
+    // Start :: Meal Voucher Calculation
+
+    var mealTotalAmountTrue = <%= (mealVoucherAmount /12) * forMonth %> 
+    var mealCurrentStatus = String($("#mealVoucherStatus").val());
+    var mealOriginalStatus = String($("#mealOriginalStatus").val());
+
+    if(mealCurrentStatus != mealOriginalStatus)
+    {
+        if(mealCurrentStatus == "true")
+        {
+            calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance - mealTotalAmountTrue;
+            calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance - mealTotalAmountTrue;
+            paySlipNewValue = paySlipNewValue - mealTotalAmountTrue;
+            paySlipNewTotalValue = paySlipNewTotalValue - mealTotalAmountTrue;
+
+        }
+        else
+        {
+            calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance + mealTotalAmountTrue;
+            calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance + mealTotalAmountTrue;
+            paySlipNewValue = paySlipNewValue + mealTotalAmountTrue;
+            paySlipNewTotalValue = paySlipNewTotalValue + mealTotalAmountTrue;
+           
+        }
+    }
+    else
+    {
+        calculateSpecialAllowanceConveyance = calculateSpecialAllowanceConveyance;
+        calculateSpecialAllowanceTotalConveyance = calculateSpecialAllowanceTotalConveyance;
+        paySlipNewValue = paySlipNewValue;
+        paySlipNewTotalValue = paySlipNewTotalValue;
+    }
+
+    // End :: Meal Voucher Calculation
+
+
+    $("#specialAllowanceNew").text(calculateSpecialAllowanceConveyance.toFixed());
+    $("#specialAllowanceNewValue").val(calculateSpecialAllowanceConveyance.toFixed());
+
+    $("#specialAllowanceTotal").text(calculateSpecialAllowanceTotalConveyance.toFixed());
+    $("#specialAllowanceTotalValue").val(calculateSpecialAllowanceTotalConveyance.toFixed());
+
+    $("#paySlipValueNewView").text(paySlipNewValue.toFixed());
+    $("#paySlipValueNew").val(paySlipNewValue.toFixed());
+
+    $("#paySlipValueNewTotalView").text(paySlipNewTotalValue.toFixed());
+    $("#paySlipValueNewTotal").val(paySlipNewTotalValue.toFixed());
+    $("#topPaySlipValueId").text(paySlipNewTotalValue.toFixed());
+
+    // Start :: Special Allowance and Payslip check Limit Values
+
+    if(calculateSpecialAllowanceConveyance < 0)
+    {
+        document.getElementById('specialAllowanceNew').className = 'fetchedRed'; 
+    }
+    else
+    {
+        document.getElementById('specialAllowanceNew').className = 'fetched BlueShortSize';
+    }
+    if(calculateSpecialAllowanceTotalConveyance < 0)
+    {
+        document.getElementById('specialAllowanceTotal').className = 'fetchedRed'; 
+    }
+    else
+    {
+        document.getElementById('specialAllowanceTotal').className = 'fetched BlueShortSize';
+    }
+    if(paySlipNewTotalValue < 252000)
+    {
+        document.getElementById('topPaySlipValueId').className = 'fetchedRed'; 
+        document.getElementById('paySlipValueNewTotalView').className = 'fetchedRed';
+    }
+    else
+    {
+        document.getElementById('topPaySlipValueId').className = 'fetched';
+        document.getElementById('paySlipValueNewTotalView').className = 'fetched BlueShortSize'; 
+    }
+    // End :: Special Allowance and Payslip check Limit Values
+
+
+    // Start :: Calculate reimbursement Total Values
+
+     var conveyanceTotalValuesTop = isNaN(parseInt($("#ConveyanceReimbursementTotal").val()))?0:parseInt($("#ConveyanceReimbursementTotal").val());
+     var communicationTotalValuesTop = isNaN(parseInt($("#CommunicationReimbursementTotal").val()))?0:parseInt($("#CommunicationReimbursementTotal").val());
+     var mealVoucherTotalTop = isNaN(parseInt($("#mealVoucherTotal").val()))?0:parseInt($("#mealVoucherTotal").val());
+     var ltaReimbursementTotalTop = isNaN(parseInt($("#ltaReimbursementTotal").val()))?0:parseInt($("#ltaReimbursementTotal").val());
+     var medicalReimbursementTotalTop = isNaN(parseInt($("#medicalReimbursementTotal").val()))?0:parseInt($("#medicalReimbursementTotal").val());
+     var carMonetizationTotalValueTop = isNaN(parseInt($("#carMonetizationTotalValue").val()))?0:parseInt($("#carMonetizationTotalValue").val());
+     var bplTotalTop = isNaN(parseInt($("#bplTotal").val()))?0:parseInt($("#bplTotal").val());
+
+     var totalReimbursementValueTopDisplay = conveyanceTotalValuesTop + communicationTotalValuesTop + mealVoucherTotalTop + ltaReimbursementTotalTop + medicalReimbursementTotalTop + carMonetizationTotalValueTop + bplTotalTop;
+
+     $("#topReimbursementTotalTop").text(totalReimbursementValueTopDisplay);
+     $("#paySlipValueNewTotalHiddenValue").val(totalReimbursementValueTopDisplay);
+
+
+    // End :: Calculate reimbursement Total Values
+
+}
+
+function conveyanceReimbursementCalculation(getCurrentValue)
+{
+
+    var utilizedConveyanceValue = isNaN(parseInt($("#utilizedConveyanceValueNew").val()))?0:parseInt($("#utilizedConveyanceValueNew").val());
+    getCurrentValue = isNaN(parseInt(getCurrentValue))?0:parseInt(getCurrentValue);
+
+    var ConveyanceReimbursementTotal = utilizedConveyanceValue + getCurrentValue;
+    var conveyanceLimit = <%= conveyance %>
+    var conveyanceLimitUtilizedAmount = parseInt(conveyanceLimit) - utilizedConveyanceValue;
+    if(conveyanceLimitUtilizedAmount < getCurrentValue)
+    {
+       document.getElementById('alertConveyance').innerHTML='Amount must not exceed '+conveyanceLimitUtilizedAmount;
+       document.getElementById("submitButtonValidationManage").disabled = true;
+       document.getElementById('finalAlert').innerHTML='Please make sure that the inputs above are valid';
+    }
+    else
+    {
+    document.getElementById('alertConveyance').innerHTML= '';
+    document.getElementById('finalAlert').innerHTML='';
+    document.getElementById("submitButtonValidationManage").disabled = false;
+    $("#ConveyanceReimbursementTotal").val(ConveyanceReimbursementTotal);
+    $("#ConveyanceReimbursementTotalView").text(ConveyanceReimbursementTotal);
+    }
+    __resetSpecialPaySlipValues();
+    __validateFlexiInput();
+
+}
+
+
+function communicationReimbursementCalculation(getCurrentValue)
+{
+    var utilizedCommunicationValue = isNaN(parseInt($("#utilizedCommunicationValue").val()))?0:parseInt($("#utilizedCommunicationValue").val());
+    getCurrentValue = isNaN(parseInt(getCurrentValue))?0:parseInt(getCurrentValue);
+    var communicationLimit = <%= communication %>
+    var communicationLimitUtilizedAmount = parseInt(communicationLimit) - utilizedCommunicationValue;
+    var CommunicationReimbursementTotal = utilizedCommunicationValue + getCurrentValue;
+
+    if(communicationLimitUtilizedAmount < getCurrentValue)
+    {
+       document.getElementById('alertCommunication').innerHTML='Amount must not exceed '+communicationLimitUtilizedAmount;
+       document.getElementById("submitButtonValidationManage").disabled = true;
+       document.getElementById('finalAlert').innerHTML='Please make sure that the inputs above are valid';
+    }
+    else
+    {
+        document.getElementById('alertCommunication').innerHTML= '';
+        document.getElementById('finalAlert').innerHTML='';
+        document.getElementById("submitButtonValidationManage").disabled = false;
+        $("#CommunicationReimbursementTotal").val(CommunicationReimbursementTotal);
+        $("#CommunicationReimbursementTotalView").text(CommunicationReimbursementTotal);        
+    }
+    __resetSpecialPaySlipValues();
+    __validateFlexiInput();
+
+}
+
+function medicalReimbursementCalculation(getCurrentValue)
+{
+    var utilizedMedicalValue = isNaN(parseInt($("#utilizedMedicalValue").val()))?0:parseInt($("#utilizedMedicalValue").val());
+    getCurrentValue = isNaN(parseInt(getCurrentValue))?0:parseInt(getCurrentValue);
+    var MedicalReimbursementTotal = utilizedMedicalValue + getCurrentValue;
+    var medicalLimit = 15000;
+    var medicalUtilizedLimit = medicalLimit - utilizedMedicalValue;
+    if(medicalUtilizedLimit < getCurrentValue)
+    {
+        document.getElementById('alertMedical').innerHTML='Amount must not exceed '+medicalUtilizedLimit;
+    }
+    else
+    {
+        document.getElementById('alertMedical').innerHTML= '';
+        $("#medicalReimbursementTotal").val(MedicalReimbursementTotal);
+        $("#medicalReimbursementTotalView").text(MedicalReimbursementTotal);
+    }
+    __resetSpecialPaySlipValues();
+    __validateFlexiInput();
+
+}
+
+function ltaReimbursementCalculation(getCurrentValue)
+{
+    var utilizedLtaValue = isNaN(parseInt($("#ltaUtilizedValue").val()))?0:parseInt($("#ltaUtilizedValue").val());
+    getCurrentValue = isNaN(parseInt(getCurrentValue))?0:parseInt(getCurrentValue);
+
+    var LtaReimbursementTotal = utilizedLtaValue + getCurrentValue;
+    var LtaLimit = <%= lta %>;
+    var LtaUtilizedLimit = LtaLimit - utilizedLtaValue;
+    if(LtaUtilizedLimit < getCurrentValue)
+    {
+    document.getElementById('alertLta').innerHTML='Amount must not exceed '+LtaUtilizedLimit;   
+    }
+    else
+    {
+    document.getElementById('alertLta').innerHTML= '';
+    $("#ltaReimbursementTotal").val(LtaReimbursementTotal);
+    $("#ltaReimbursementTotalView").text(LtaReimbursementTotal);
+    }
+    __resetSpecialPaySlipValues();
+    __validateFlexiInput();
+
+}
+
+// Start :: LTA Function Call
+
+// Start :: Meal Voucher Code
+
+function mealVoucherCalculation()
+{
+    var mealCurrentStatus = String($("#mealVoucherStatus").val());
+    var utilizedMealValue = isNaN(parseInt($("#mealVoucherUtilized").val()))?0:parseInt($("#mealVoucherUtilized").val());
+
+    if(mealCurrentStatus == "true")
+    {
+    	var mealValueAmountJS = <%= mealVoucherAmount %>
+        var mealTotalAmountTrue = mealValueAmountJS - utilizedMealValue;
+        var totalMealValue = mealTotalAmountTrue + utilizedMealValue;
+        $("#mealVoucherTotal").val(totalMealValue);
+        $("#mealVoucherTotalView").text(totalMealValue);
+    }
+    else
+    {
+        $("#mealVoucherTotal").val(utilizedMealValue);
+        $("#mealVoucherTotalView").text(utilizedMealValue);
+    }
+
+       __resetSpecialPaySlipValues(); 
+       __validateFlexiInput();
+
+}   
+
+// End :: Meal Voucher Code
+
+// Start :: HRA Function Call
+
+// function hraDependentOperation()
+// {
+//     var basicSalaray = isNaN(parseInt($("#basicSalaryId").val()))?0:parseInt($("#basicSalaryId").val());
+//     var hraPercentage = String($("#hraPercentage").val());
+//     var utilizedHraValue = isNaN(parseInt($("#hraUtilizedId").val()))?0:parseInt($("#hraUtilizedId").val());
+//     var getMonthValue = <%= forMonth %>
+//     var totalHraAmount = ((basicSalaray * hraPercentage * getMonthValue)/(100 * 12));
+//     var finalHraValue = totalHraAmount + utilizedHraValue;
+//     // ------ For Submitted New Value -------
+//     $("#hraNewValueSubmitted").val(totalHraAmount.toFixed());   
+//     // ------ End Submitted New value ------- 
+//     $("#hraTotal").text(finalHraValue.toFixed());
+//     $("#hraTotalValue").val(finalHraValue.toFixed());
+       
+//     __resetSpecialPaySlipValues();
+//     __validateFlexiInput();
+
+// }
+
+// End :: HRA Function Call
+
+// Start :: Global Validation flexi
+
+function __validateFlexiInput()
+{
+
+    // -------------- LTA ---------------------------------
+    var utilizedLtaValueValidation = isNaN(parseInt($("#ltaUtilizedValue").val()))?0:parseInt($("#ltaUtilizedValue").val());
+    var currentLtaValuesValidation = isNaN(parseInt($("#ltaReimbursementNewView").val()))?0:parseInt($("#ltaReimbursementNewView").val());
+    var LtaLimitValidation = <%= lta %>;
+    var LtaUtilizedLimitValidation = LtaLimitValidation - utilizedLtaValueValidation;
+    // -------------- Medical ------------------------------
+    var utilizedMedicalValueValidation = isNaN(parseInt($("#utilizedMedicalValue").val()))?0:parseInt($("#utilizedMedicalValue").val());
+    var currentMedicalValuesValidation = isNaN(parseInt($("#medicalReimbursementNewView").val()))?0:parseInt($("#medicalReimbursementNewView").val());
+    var medicalLimitValidation = 15000;
+    var medicalUtilizedLimitValidation = medicalLimitValidation - utilizedMedicalValueValidation;
+    // ------------- Communication -------------------------
+    var utilizedCommunicationValueValidation = isNaN(parseInt($("#utilizedCommunicationValue").val()))?0:parseInt($("#utilizedCommunicationValue").val());
+    var currentCommuincationValuesValidation = isNaN(parseInt($("#CommunicationReimbursementNewView").val()))?0:parseInt($("#CommunicationReimbursementNewView").val());
+    var communicationLimitValidation = <%= communication %>
+    var communicationLimitUtilizedAmountValidation = parseInt(communicationLimitValidation) - utilizedCommunicationValueValidation;
+    // ----------------- Conveyance --------------------------
+    var utilizedConveyanceValueValidation = isNaN(parseInt($("#utilizedConveyanceValueNew").val()))?0:parseInt($("#utilizedConveyanceValueNew").val());
+    var conveyanceCurrentAmountValidation = isNaN(parseInt($("#ConveyanceReimbursementNewView").val()))?0:parseInt($("#ConveyanceReimbursementNewView").val());
+    var conveyanceLimitValidation = <%= conveyance %>
+    var conveyanceLimitUtilizedAmountValidation = parseInt(conveyanceLimitValidation) - utilizedConveyanceValueValidation;
+    // -----------------------------------------------------------------------------------------
+
+    // --------------------------- Payslip Special Allowance Condition check -------------------
+
+    var __getCurrentSpecialAllowanceValue = isNaN(parseInt($("#specialAllowanceNewValue").val()))?0:parseInt($("#specialAllowanceNewValue").val());
+    var __getCurrentSpecialAllowanceTotalValue = isNaN(parseInt($("#specialAllowanceTotalValue").val()))?0:parseInt($("#specialAllowanceTotalValue").val());
+    var __getCurrentPaySlipTotalValue = isNaN(parseInt($("#paySlipValueNewTotal").val()))?0:parseInt($("#paySlipValueNewTotal").val());
+
+    //---------------------------- Payslip Special Allowance Condition check -------------------
+
+
+    if(LtaUtilizedLimitValidation < currentLtaValuesValidation || medicalUtilizedLimitValidation < currentMedicalValuesValidation || communicationLimitUtilizedAmountValidation < currentCommuincationValuesValidation || conveyanceLimitUtilizedAmountValidation < conveyanceCurrentAmountValidation || __getCurrentSpecialAllowanceValue < 0 || __getCurrentSpecialAllowanceTotalValue < 0 || __getCurrentPaySlipTotalValue < 252000)
+    {
+    document.getElementById("submitButtonValidationManage").disabled = true;
+    document.getElementById('finalAlert').innerHTML='Please make sure that the inputs above are valid';
+    }
+    else
+    {
+    document.getElementById('finalAlert').innerHTML='';
+    document.getElementById("submitButtonValidationManage").disabled = false;
+    }
+
+}
+
+// End :: Global Validation flexi
+
+
+function minmax(value, max) 
+{
+    if(parseInt(value) > max) 
+    {
+        return 0; 
+    }
+    else return value;
+}
+
+function confirmationCheck(status=false) {
+    if(status)
+    {
+        document.getElementById("flexiForm").submit(); 
+    }
+    else
+    {
+        $('#myMsg').modal('show');  
+        return false;
+    }
+}
+
+// ###################################### END ##################################################
+// ################################## CHANDAN KUMAR ############################################
+// #############################################################################################
+</script>
+
+<script>
+    $(window).load(function() {
+        if(!sessionStorage.getItem('isViewed')){
+            $('#hintModal').modal('show');
+            sessionStorage.setItem('isViewed',true);
+        }
+    });
+</script>
+
+</body>
+</html>
