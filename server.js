@@ -806,6 +806,76 @@ app.get('/*', function (req, res) {
 
 //------------------------------------- End :: Backend Admin panel Code -------------------------------------
 
+// -------------------------- Expriment TXT file upload and read ------------------------------------------------------
+
+app.get('/txtread', function(req, res){
+    res.render(__dirname + '/public/txtfile');
+});
+
+app.post('/txtread', function(req, res){
+
+    var form = new formidable.IncomingForm();
+    form.uploadDir = path.join(__dirname, '/uploads');
+    var listConsist = [];
+    form.on('file', function (field, file) {
+        var array = fs.readFileSync(file.path).toString().split("\n");
+        array.forEach(function(k){
+            var content = k.split(" - - ")[0];
+            if(listConsist[content])
+            {
+                ++listConsist[content];
+            }
+            else
+            {
+                listConsist[content] = 1;
+            }
+        });
+        res.setHeader('Content-Type', 'text/html');
+        Object.keys(listConsist).forEach(function(i){
+            res.write(i+' lies '+listConsist[i]+' times.<br/>');
+        });
+        res.end();
+    });
+
+    form.parse(req);
+
+});
+
+// ------------------------- Word Count --------------------------------------------------
+
+app.get('/wordcount', function(req, res){
+    res.render(__dirname + '/public/wordcount');
+});
+
+app.post('/wordcount', function(req, res){ 
+
+    var form = new formidable.IncomingForm();
+    form.uploadDir = path.join(__dirname, '/uploads');
+    var maxLength = "";
+    form.on('file', function (field, file) {
+            fs.readFile(file.path, function(err, data){
+                var arr = data.toString().split(" ");
+                arr.forEach(function(k){
+                    if(k.length % 2 == 0 && maxLength.length < k.length)
+                    {
+                        maxLength = k;
+                    }
+                })
+
+                res.setHeader('Content-Type', 'text/html');
+                res.write(maxLength);
+                res.end();
+
+            })
+            
+        });
+
+    form.parse(req);
+
+});
+
+// -------------------------------------- TXT Upload ---------------------------------------------------------------
+
 // ------------------------- Port Listen SSL Implementation --------------------------------------------------------
 var privateKey  = fs.readFileSync(__dirname + 'public/certificates/example.key', 'utf8');
 var certificate = fs.readFileSync(__dirname + 'public/certificates/star.example.in.crt', 'utf8');
